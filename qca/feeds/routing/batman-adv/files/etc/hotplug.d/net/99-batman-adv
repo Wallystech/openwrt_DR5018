@@ -1,0 +1,30 @@
+#!/bin/sh
+
+. /lib/batman-adv/config.sh
+
+bat_load_module
+config_load batman-adv
+
+case "$ACTION" in
+	add)
+		[ -d /sys/class/net/$INTERFACE/mesh/ ] && bat_config "$INTERFACE"
+		if [ -d "/sys/class/net/$INTERFACE/mesh" ]; then
+			bat_config "$INTERFACE"
+		fi
+		if ! ip link show bat0 >/dev/null 2>&1; then
+			ip link add name bat0 type batadv 2>/dev/null
+			ip link set bat0 up 2>/dev/null
+			brctl addif br-lan bat0 2>/dev/null
+			ip link set bat0 mtu 9000
+			logger -t batman-adv "Created bat0 and added to br-lan"
+		fi
+		if uci -q show wireless | grep -q "network='bat0'"; then
+			if iw dev "$INTERFACE" info >/dev/null 2>&1; then
+				if ! batctl if | awk '{print $1}' | grep -qx "$INTERFACE"; then
+					batctl if add "$INTERFACE"
+					ip link set "$INTERFACE" mtu 9000
+				fi
+			fi
+		fi
+		;;
+esac
