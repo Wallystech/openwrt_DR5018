@@ -1,0 +1,18 @@
+Source-Makefile: feeds/platform_utils/qrtr/Makefile
+Package: qrtr
+Version: 2019-07-24
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq50xx +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: qrtr software
+Maintainer: 
+Source: qrtr-2019-07-24-cd6bedd5d00f211e6c1e3803ff2f9f53c246435e.tar.gz
+Type: ipkg
+Description: qrtr software
+
+@@
+
+

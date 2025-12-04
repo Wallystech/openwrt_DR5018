@@ -1,0 +1,56 @@
+Source-Makefile: feeds/athtestcmd/athtestcmd/Makefile
+Package: athtestcmd
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +librt +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ath10k
+Section: QCA
+Category: QTI software
+Title: QCA TLVCMD(athtestcmd) Driver & tools
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   athtestcmd command support for ath10k
+http://www.qca.qualcomm.com
+
+@@
+
+Package: athtestcmd-lith
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: lithium
+Section: QCA
+Category: QTI software
+Title: QCA TLVCMD(qcatestcmd) Driver & tools
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   qcatestcmd command support for lithium
+http://www.qca.qualcomm.com
+
+@@
+
+Package: athtestcmd-lith-nl
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64 +libnl +libtcmd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: lithium-netlink
+Section: QCA
+Category: QTI software
+Title: QCA TLVCMD(qcatestcmd) Driver & tools
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   qcatestcmd command support for lithium-netlink
+http://www.qca.qualcomm.com
+
+@@
+
+

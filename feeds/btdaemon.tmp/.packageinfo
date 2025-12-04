@@ -1,0 +1,21 @@
+Source-Makefile: feeds/btdaemon/btdaemon/Makefile
+Package: btdaemon
+Version: 1.0-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64 +qca-diag
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: btdaemon
+Category: btdaemon
+Title: Bluetooth Daemon Library to transport Packets from FTM Application to Future Platforms.
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	Bluetooth Daemon Application to transport HCI Packets
+
+@@
+Config:
+	source "qca/feeds/btdaemon/btdaemon/Config.in"
+@@
+
+

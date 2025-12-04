@@ -1,0 +1,18 @@
+Source-Makefile: feeds/platform_utils/squashfs4/Makefile
+Package: squashfs4
+Version: 4.2
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +liblzma +zlib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: squashfs tools
+Maintainer: 
+Source: squashfs4.2.tar.gz
+Type: ipkg
+Description: squashfs tools
+
+@@
+
+

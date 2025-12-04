@@ -1,0 +1,6 @@
+ath11k_utils/ath11k-fwtest
+utils/cfr_tools
+utils/cnssdiag
+utils/ftm
+utils/libtcmd
+utils/qca-cnss-daemon

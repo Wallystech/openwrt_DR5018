@@ -1,0 +1,35 @@
+Source-Makefile: feeds/qca_platform_utils/qca-diag/Makefile
+Package: qca-diag
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq807x +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux diag software
+Maintainer: 
+Source: qca-diag-g.tar.gz
+Type: ipkg
+Description: QCA Linux diag software
+
+@@
+
+Package: kmod-coresight-stream-sock
+Version: <LINUX_VERSION>+g-1
+Depends: +kmod-udptunnel4 +IPV6:kmod-udptunnel6
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Add Coresight network stream module
+Maintainer: 
+Source: qca-diag-g.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CORESIGHT_STREAM
+Description:   Add Coresight network stream module
+
+@@
+
+

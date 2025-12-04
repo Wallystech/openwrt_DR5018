@@ -1,0 +1,18 @@
+Source-Makefile: feeds/platform_utils/lrzsz/Makefile
+Package: lrzsz
+Version: 0.12.20-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: Modem Utilities
+Maintainer: 
+Source: lrzsz-0.12.20.tar.gz
+Type: ipkg
+Description:   Modem Managment Utilities
+
+@@
+
+

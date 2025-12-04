@@ -1,0 +1,18 @@
+Source-Makefile: feeds/bluetopia/bluetopia-mini/Makefile
+Package: bluetopia-mini
+Version: 4.2.1.c1_26-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QTI
+Category: QTI software
+Title: bluetopia-mini - QTI mini-Bluetopia
+Maintainer: 
+Source: bluetopia-4.2.1.c1_26.tar.bz2
+Type: ipkg
+Description:   This package contains mini-Bluetopia PM and mini-Bluetopia binaries
+
+@@
+
+

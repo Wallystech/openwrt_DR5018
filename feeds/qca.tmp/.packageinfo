@@ -1,0 +1,113 @@
+Source-Makefile: feeds/qca/ath11k_utils/ath11k-fwtest/Makefile
+Package: ath11k-fwtest
+Version: g
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA ath11k fwtest utility
+Maintainer: Qualcomm Atheros, Inc.
+Source: 
+Type: ipkg
+Description:   This Package contains ath11k fwtest utility
+http://www.qca.qualcomm.com
+Qualcomm Atheros, Inc.
+@@
+
+
+Source-Makefile: feeds/qca/utils/cfr_tools/Makefile
+Package: cfr_tools
+Version: g
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QTI
+Category: QTI software
+Title: QTI cfr test utils
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description: QTI cfr test utils
+http://www.qualcomm.com
+Qualcomm Atheros
+@@
+
+
+Source-Makefile: feeds/qca/utils/cnssdiag/Makefile
+Package: cnssdiag
+Version: g
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +TARGET_ipq50xx:qca-diag +TARGET_ipq807x:qca-diag +TARGET_ipq_ipq807x:qca-diag +TARGET_ipq_ipq807x_64:qca-diag +TARGET_ipq_ipq60xx:qca-diag +TARGET_ipq_ipq60xx_64:qca-diag +TARGET_ipq_ipq50xx:qca-diag +TARGET_ipq_ipq50xx_64:qca-diag +libnl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA cnssdiag utils
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description: QCA cnssdiag utils
+http://www.qca.qualcomm.com
+Qualcomm Atheros
+@@
+
+
+Source-Makefile: feeds/qca/utils/ftm/Makefile
+Package: ftm
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq807x||TARGET_ipq50xx +libnl +libtcmd +qca-diag +librt +FEATURE_QCA_IOT:qca-IOT +FEATURE_QCA_IOT_IPQ50XX_SUPPORT:btdaemon
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA ftm utils
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description: QCA ftm utils
+http://www.qca.qualcomm.com
+Qualcomm Atheros
+@@
+
+
+Source-Makefile: feeds/qca/utils/libtcmd/Makefile
+Package: libtcmd
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq807x||TARGET_ipq50xx +libpthread +libnl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA libtcmd utils
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description: QCA libtcmd utils
+http://www.qca.qualcomm.com
+Qualcomm Atheros
+@@
+
+
+Source-Makefile: feeds/qca/utils/qca-cnss-daemon/Makefile
+Package: qca-cnss-daemon
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq807x||TARGET_ipq50xx +libnl +libpthread +qca-qmi-framework
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux QMI sotware
+Maintainer: 
+Source: 
+Type: ipkg
+Description: QCA Linux QMI sotware
+
+@@
+
+

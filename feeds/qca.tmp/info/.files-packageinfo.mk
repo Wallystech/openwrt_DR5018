@@ -1,0 +1,6 @@
+$(eval $(call PackageDir,ath11k_utils_ath11k-fwtest,ath11k_utils/ath11k-fwtest,))
+$(eval $(call PackageDir,utils_cfr_tools,utils/cfr_tools,))
+$(eval $(call PackageDir,utils_cnssdiag,utils/cnssdiag,))
+$(eval $(call PackageDir,utils_ftm,utils/ftm,))
+$(eval $(call PackageDir,utils_libtcmd,utils/libtcmd,))
+$(eval $(call PackageDir,utils_qca-cnss-daemon,utils/qca-cnss-daemon,))

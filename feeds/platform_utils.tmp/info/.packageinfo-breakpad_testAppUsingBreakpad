@@ -1,0 +1,18 @@
+Source-Makefile: feeds/platform_utils/breakpad/testAppUsingBreakpad/Makefile
+Package: testAppUsingBreakpad
+Version: 1.0-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +breakpad-wrapper
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: testAppUsingBreakpad
+Category: testAppUsingBreakpad
+Title: Test Application using Breakpad Functionality!
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	Test Application using Breakpad Functionality.
+
+@@
+
+
