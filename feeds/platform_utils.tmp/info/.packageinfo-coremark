@@ -1,0 +1,19 @@
+Source-Makefile: feeds/platform_utils/coremark/Makefile
+Package: coremark
+Version: 1.01
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Title: CoreMark EEMBC Benchmark
+Maintainer: 
+Source: v1.01.zip
+Type: ipkg
+Description:   CoreMark is a simple, yet sophisticated benchmark that is designed specifically to test the functionality of a processor core.
+https://github.com/eembc/coremark
+
+@@
+
+

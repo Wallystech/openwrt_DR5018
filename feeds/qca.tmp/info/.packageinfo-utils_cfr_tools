@@ -1,0 +1,19 @@
+Source-Makefile: feeds/qca/utils/cfr_tools/Makefile
+Package: cfr_tools
+Version: g
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QTI
+Category: QTI software
+Title: QTI cfr test utils
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description: QTI cfr test utils
+http://www.qualcomm.com
+Qualcomm Atheros
+@@
+
+

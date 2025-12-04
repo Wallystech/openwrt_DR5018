@@ -1,0 +1,181 @@
+Source-Makefile: feeds/qca_platform_utils/clk-debug/Makefile
+Package: clk-debug
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux Clock Debug script
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   This package contains a Clock Debug script which can be used
+  internally by QCA to check the status of Clocks easily and
+  quickly.
+
+@@
+
+
+Source-Makefile: feeds/qca_platform_utils/dashboard/Makefile
+Package: dashboard
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux Dashboard script
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   This package contains a shell script which can be used
+  internally by QCA to print the system information
+  quickly without accessing system entries one by one
+
+@@
+
+
+Source-Makefile: feeds/qca_platform_utils/qca-diag/Makefile
+Package: qca-diag
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq807x +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux diag software
+Maintainer: 
+Source: qca-diag-g.tar.gz
+Type: ipkg
+Description: QCA Linux diag software
+
+@@
+
+Package: kmod-coresight-stream-sock
+Version: <LINUX_VERSION>+g-1
+Depends: +kmod-udptunnel4 +IPV6:kmod-udptunnel6
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Add Coresight network stream module
+Maintainer: 
+Source: qca-diag-g.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_CORESIGHT_STREAM
+Description:   Add Coresight network stream module
+
+@@
+
+
+Source-Makefile: feeds/qca_platform_utils/qca-qmi-framework/Makefile
+Package: qca-qrtr
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq50xx +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux QMI framework software
+Maintainer: 
+Source: qca-qmi-framework-g.tar.gz
+Type: ipkg
+Description: QCA Linux QMI framework software
+
+@@
+
+Package: qca-qmi-framework
+Version: g-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq50xx +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux QMI framework software
+Maintainer: 
+Source: qca-qmi-framework-g.tar.gz
+Type: ipkg
+Description: QCA Linux QMI framework software
+
+@@
+
+Package: kmod-testssr
+Version: <LINUX_VERSION>+g-1
+Depends: @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq50xx
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: TEST SSR-RPROC driver
+Maintainer: 
+Source: qca-qmi-framework-g.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_IPQ_SUBSYSTEM_RESTART_TEST
+Description:   This driver provides support for the testing of SSR-RPROC.
+
+@@
+
+Package: kmod-qmi-test-app
+Version: <LINUX_VERSION>+g-1
+Depends: @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64||TARGET_ipq50xx
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Add QMI ping_pong test application
+Maintainer: 
+Source: qca-qmi-framework-g.tar.gz
+Type: ipkg
+Kernel-Config: CONFIG_MSM_TEST_QMI_CLIENT
+Description:   Add QMI ping_pong test application
+
+@@
+
+
+Source-Makefile: feeds/qca_platform_utils/qca-thermald-10.4/Makefile
+Package: qca-thermald-10.4
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: Thermal Mitigation daemon
+Maintainer: Qualcomm Atheros
+Source: 
+Type: ipkg
+Description:   This package is IPQ Thermal Mitigation daemon.
+http://www.qca.qualcomm.com
+Qualcomm Atheros
+@@
+
+
+Source-Makefile: feeds/qca_platform_utils/qca-wlanfw-upgrade/Makefile
+Package: qca-wlanfw-upgrade
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq_ipq807x||TARGET_ipq_ipq807x_64||TARGET_ipq807x||TARGET_ipq807x_64||TARGET_ipq_ipq60xx||TARGET_ipq_ipq60xx_64||TARGET_ipq60xx||TARGET_ipq60xx_64||TARGET_ipq_ipq50xx||TARGET_ipq_ipq50xx_64 +squashfs4
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: QCA
+Category: QTI software
+Title: QCA Linux Wlan Firmware Upgrade script
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   This package contains a wlan firmware upgrade script which can be used
+  internally by QCA to update the wlan firmware components like q6 and m3 images.
+
+@@
+
+
