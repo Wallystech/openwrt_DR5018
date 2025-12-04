@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=
 PKG_UNPACK=mkdir -p $(PKG_BUILD_DIR); $(CP) $(LOCAL_SRC)/* $(PKG_BUILD_DIR)/
 else ifneq ($(LOCAL_SRC),)
 
-PKG_REV=$(shell cd $(LOCAL_SRC)/; git describe --dirty --long --always | sed 's/.*-g//g')
+
 $(warning $(PKG_REV))
 PKG_VERSION:=g$(PKG_REV)
 PKG_SOURCE_URL:=
