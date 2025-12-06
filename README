@@ -1,35 +1,133 @@
-This is the buildsystem for the OpenWrt Linux distribution.
+# OpenWRT WallysTech DR5018S 无线Mesh项目
 
-Please use "make menuconfig" to configure your appreciated
-configuration for the toolchain and firmware.
+[![WallysTech官网](https://img.shields.io/badge/WallysTech-官方网站-blue?style=for-the-badge&logo=web)](https://www.wallystech.com/)
+[![联系我们](https://img.shields.io/badge/联系-jason%40wallystech.com-green?style=for-the-badge&logo=gmail)](mailto:support@wallystech.com)
 
-You need to have installed gcc, binutils, bzip2, flex, python, perl, make,
-find, grep, diff, unzip, gawk, getopt, subversion, libz-dev and libc headers.
+## 🔥 主打产品：WallysTech DR5018S
 
-Run "./scripts/feeds update -a" to get all the latest package definitions
-defined in feeds.conf / feeds.conf.default respectively
-and "./scripts/feeds install -a" to install symlinks of all of them into
-package/feeds/.
+**沃利斯通信（苏州）有限公司**隆重推出**DR5018S高性能Wi-Fi 6路由器板卡**，专为大规模Mesh组网和企业级应用设计。
 
-Use "make menuconfig" to configure your image.
+### 产品核心优势
 
-Simply running "make" will build your firmware.
-It will download all sources, build the cross-compile toolchain, 
-the kernel and all choosen applications.
+- ✅ **Wi-Fi 6技术**：支持802.11ax标准，MU-MIMO和OFDMA技术
+- ✅ **多频并发**：多频段同时工作
+- ✅ **多版本选择**：(2.4GHz+5GHz+6GHz)、(2.4GHz+5GHz+5GHz)、(5GHz+5GHz)
+- ✅ **企业级稳定性**：工业级设计，7×24小时不间断运行
+- ✅ **硬件加速**：集成高通NSS网络加速引擎
+- ✅ **灵活部署**：支持PoE供电，便于大规模部署
 
-You can use "scripts/flashing/flash.sh" for remotely updating your embedded
-system via tftp.
+**立即获取产品报价和技术资料：support@wallystech.com**
 
-The OpenWrt system is documented in docs/. You will need a LaTeX distribution
-and the tex4ht package to build the documentation. Type "make -C docs/" to build it.
+## 📋 项目概述
 
-To build your own firmware you need to have access to a Linux, BSD or MacOSX system
-(case-sensitive filesystem required). Cygwin will not be supported because of
-the lack of case sensitiveness in the file system.
+本项目为**WallysTech DR5018S**路由器板卡提供完整的OpenWRT定制固件解决方案，专门针对企业级Mesh网络应用进行优化。
 
+## 🚀 主要特性
 
-Sunshine!
-	Your OpenWrt Project
-	http://openwrt.org
+### 1. **基于IPQ5018的高性能平台**
 
+   - Qualcomm IPQ5018芯片，双核ARM Cortex-A53 @ 1.0GHz
+   - 512MB DDR3L系统内存，128MB NAND Flash存储
+   - 硬件NAT加速，支持高并发网络连接
 
+### 2. **完整的Mesh网络支持**
+
+   - 原生集成B.A.T.M.A.N. Advanced Mesh协议
+   - 支持多跳路由和动态拓扑发现
+   - 自动链路质量评估和路由优化
+
+### 3. **企业级功能**
+
+   - 支持WPA3企业级安全加密
+   - VLAN隔离和多SSID管理
+   - 集中化网络管理和监控
+   - 支持Captive Portal和计费系统
+
+## 📸 系统界面展示
+
+### 系统状态监控
+
+![系统状态](include/images/status.png)
+*图1：系统整体状态监控界面*
+
+### Mesh网络概览
+
+![Mesh网络状态](include/images/mesh1.png)
+*图2：Mesh网络运行状态和连接信息*
+
+### 网络拓扑管理
+
+![Mesh网络拓扑](include/images/mesh3.png)
+*图3：Mesh网络拓扑结构可视化*
+
+### 节点状态监控
+
+![Mesh对等节点](include/images/mesh4.png)
+![Mesh对等节点](include/images/mesh2.png)
+*图4 & 5：Mesh节点状态和邻居信息*
+
+## 🔧 技术规格
+
+### 硬件规格
+
+- **主芯片**：Qualcomm IPQ5018
+- **CPU架构**：双核ARM Cortex-A53 @ 1.0GHz
+- **系统内存**：512MB DDR3L
+- **存储**：8MB NOR Flash + 128MB NAND Flash
+- **Wi-Fi标准**：802.11ax (Wi-Fi 6)
+- **频段支持**：2.4GHz (574Mbps) + 5GHz (1201Mbps)
+- **以太网接口**：1×千兆WAN + 1×千兆LAN
+- **天线接口**：4× MMCX（2.4GHz×2 + 5GHz×2）
+- **电源输入**：12V/2A DC或802.3at PoE
+- **工作温度**：-20°C至70°C
+
+### 软件特性
+
+- **Mesh协议**：B.A.T.M.A.N. Advanced
+- **管理界面**：Web GUI + CLI + API
+- **安全特性**：WPA3、防火墙、VPN支持
+- **远程管理**：支持TR-069、SSH、SNMP
+
+**详细技术规格请访问：[WallysTech DR5018S产品页面](https://www.wallystech.com/WiFi6_product/DR5018S-wifi6-IPQ5018-2.4G-5G-6G-triband-11ax-MU-MIMO-OFDMA-QCN6122-QCN6102.html)**
+
+## 🛠️ 快速开始
+
+### 编译环境搭建
+
+```bash
+# 克隆项目仓库
+git clone https://github.com/Wallystech/openwrt_DR5018.git
+cd openwrt-dr5018s
+
+# 更新软件源
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+# 编译固件（.config文件已放到根目录，已预配置DR5018S优化设置）
+make V=99
+```
+
+## 🏢 关于沃利斯通信
+
+**沃利斯通信（苏州）有限公司**是一家专注于无线通信设备研发和制造的高新技术企业，拥有10年以上行业经验，为全球客户提供高质量的无线通信解决方案。
+
+### 我们的服务
+
+- **产品定制**：根据客户需求定制硬件和软件
+- **技术支持**：提供专业的技术支持和解决方案
+- **批量供应**：支持OEM/ODM，保障稳定供应
+- **质量保证**：所有产品通过严格的质量检测
+
+### 联系我们
+
+- **官方网站**：[https://www.wallystech.com/](https://www.wallystech.com/)
+- **商务合作**：support@wallystech.com
+- **技术支持**：jason@wallystech.com
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request来帮助改进这个项目。
+
+---
+
+**如需商业合作或批量采购，请直接联系：support@wallystech.com**
