@@ -1,0 +1,216 @@
+diff -urN lua-eco-3.7.0/CMakeLists.txt gxg/lua-eco-3.7.0/CMakeLists.txt
+--- lua-eco-3.7.0/CMakeLists.txt	2024-12-26 11:44:23.000000000 +0800
++++ gxg/lua-eco-3.7.0/CMakeLists.txt	2026-01-13 10:04:19.739631800 +0800
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.5)
++cmake_minimum_required(VERSION 3.3.2)
+ 
+ project(lua-eco C)
+ 
+diff -urN lua-eco-3.7.0/nl.c gxg/lua-eco-3.7.0/nl.c
+--- lua-eco-3.7.0/nl.c	2024-12-26 11:44:23.000000000 +0800
++++ gxg/lua-eco-3.7.0/nl.c	2025-11-05 09:25:37.000000000 +0800
+@@ -9,6 +9,24 @@
+ 
+ #define ECO_NLMSG_USER_MT "eco{nlmsg-user}"
+ 
++#ifndef NLM_F_NONREC
++#define NLM_F_NONREC    0x100   /* Do not recursively query */
++#endif
++#ifndef NLM_F_CAPPED
++#define NLM_F_CAPPED    0x200   /* request was capped */
++#endif
++#ifndef NLM_F_ACK_TLVS
++#define NLM_F_ACK_TLVS  0x400   /* extended ACK TVLs were included */
++#endif
++#ifndef NLMSGERR_ATTR_MSG
++#define NLMSGERR_ATTR_MSG   1
++#endif
++#ifndef NLMSGERR_ATTR_OFFS
++#define NLMSGERR_ATTR_OFFS  2
++#endif
++#ifndef NLMSGERR_ATTR_COOKIE
++#define NLMSGERR_ATTR_COOKIE 3
++#endif
+ static int eco_nlmsg_next(lua_State *L)
+ {
+     struct eco_nlmsg *msg = luaL_checkudata(L, 1, ECO_NLMSG_KER_MT);
+diff -urN lua-eco-3.7.0/rtnl.c gxg/lua-eco-3.7.0/rtnl.c
+--- lua-eco-3.7.0/rtnl.c	2024-12-26 11:44:23.000000000 +0800
++++ gxg/lua-eco-3.7.0/rtnl.c	2025-11-05 09:26:04.000000000 +0800
+@@ -3,11 +3,49 @@
+  * Author: Jianhui Zhao <zhaojh329@gmail.com>
+  */
+ 
++#include <sys/socket.h>
++#include <netinet/in.h>
++#include <linux/if.h>
+ #include <linux/version.h>
+ #include <linux/rtnetlink.h>
+-#include <linux/if.h>
+ 
+ #include "nl.h"
++#ifndef RTM_DELNETCONF
++#define RTM_DELNETCONF 82
++#endif
++#ifndef RTM_NEWSTATS
++#define RTM_NEWSTATS 92
++#endif
++#ifndef RTM_GETSTATS
++#define RTM_GETSTATS 94
++#endif
++#ifndef RTM_NEWCACHEREPORT
++#define RTM_NEWCACHEREPORT 96
++#endif
++#ifndef IFLA_GSO_MAX_SEGS
++#define IFLA_GSO_MAX_SEGS 41
++#endif
++#ifndef IFLA_GSO_MAX_SIZE
++#define IFLA_GSO_MAX_SIZE 42
++#endif
++#ifndef RTNLGRP_MPLS_NETCONF
++#define RTNLGRP_MPLS_NETCONF 29
++#endif
++#ifndef IFLA_XDP
++#define IFLA_XDP 77
++#endif
++#ifndef IFLA_EVENT
++#define IFLA_EVENT 79
++#endif
++#ifndef IFLA_PAD
++#define IFLA_PAD 44
++#endif
++#ifndef RTNLGRP_IPV4_MROUTE_R
++#define RTNLGRP_IPV4_MROUTE_R 30
++#endif
++#ifndef RTNLGRP_IPV6_MROUTE_R
++#define RTNLGRP_IPV6_MROUTE_R 31
++#endif
+ 
+ static int eco_rtnl_new_rtgenmsg(lua_State *L)
+ {
+diff -urN lua-eco-3.7.0/socket.c gxg/lua-eco-3.7.0/socket.c
+--- lua-eco-3.7.0/socket.c	2024-12-26 11:44:23.000000000 +0800
++++ gxg/lua-eco-3.7.0/socket.c	2025-11-05 09:26:22.000000000 +0800
+@@ -3,28 +3,66 @@
+  * Author: Jianhui Zhao <zhaojh329@gmail.com>
+  */
+ 
++#include <sys/socket.h>
++#include <netinet/in.h>
++#include <linux/if_arp.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
+ #include <errno.h>
+ #include <fcntl.h>
+ 
++#include <sys/ioctl.h>
+ #include <sys/sendfile.h>
+-#include <sys/socket.h>
++
+ #include <arpa/inet.h>
+-#include <net/if.h>
++
+ #include <sys/un.h>
+ 
+ #include <linux/netlink.h>
+ #include <linux/if_ether.h>
+-#include <linux/if_arp.h>
+ #include <netinet/tcp.h>
+ #include <linux/icmpv6.h>
+ #include <linux/icmp.h>
+ 
+ #include "eco.h"
+ 
++#ifndef IF_NAMESIZE
++#define IF_NAMESIZE 16
++#endif
+ #define ECO_SOCKET_MT "eco{socket}"
++unsigned int if_nametoindex(const char *ifname)
++{
++    int s = socket(AF_INET, SOCK_DGRAM, 0);
++    if (s < 0) return 0;
++    struct ifreq ifr;
++    memset(&ifr, 0, sizeof(ifr));
++    strncpy(ifr.ifr_name, ifname, IFNAMSIZ-1);
++    if (ioctl(s, SIOCGIFINDEX, &ifr) < 0) {
++        close(s);
++        return 0;
++    }
++    close(s);
++    return ifr.ifr_ifindex;
++}
++char *if_indextoname(unsigned int ifindex, char *ifname)
++{
++    int s = socket(AF_INET, SOCK_DGRAM, 0);
++    if (s < 0) return NULL;
++    struct ifreq ifr;
++    memset(&ifr, 0, sizeof(ifr));
++#if defined(SIOCGIFNAME)
++    ifr.ifr_ifindex = ifindex;
++    if (ioctl(s, SIOCGIFNAME, &ifr) < 0) { close(s); return NULL; }
++    close(s);
++    strncpy(ifname, ifr.ifr_name, IFNAMSIZ-1);
++    ifname[IFNAMSIZ-1] = '\0';
++    return ifname;
++#else
++    close(s);
++    return NULL;
++#endif
++}
+ 
+ struct eco_socket {
+     struct eco_context *eco;
+diff -urN lua-eco-3.7.0/ubus.c gxg/lua-eco-3.7.0/ubus.c
+--- lua-eco-3.7.0/ubus.c	2024-12-26 11:44:23.000000000 +0800
++++ gxg/lua-eco-3.7.0/ubus.c	2025-11-05 09:26:38.000000000 +0800
+@@ -6,8 +6,11 @@
+ #include <libubus.h>
+ #include <fcntl.h>
+ #include <math.h>
+-
++#include <unistd.h>
+ #include "eco.h"
++#ifndef BLOBMSG_TYPE_DOUBLE
++#define BLOBMSG_TYPE_DOUBLE 0x06
++#endif
+ 
+ struct eco_ubus_context {
+     struct eco_context *eco;
+@@ -73,7 +76,9 @@
+                 else
+                     blobmsg_add_u32(b, key, v);
+             } else {
+-                blobmsg_add_double(b, key, lua_tonumber(L, -1));
++                char buf[32];
++                snprintf(buf, sizeof(buf), "%.16g", lua_tonumber(L, -1));
++                blobmsg_add_string(b, key, buf);
+             }
+             break;
+         }
+@@ -141,15 +146,15 @@
+         lua_pushinteger(L, (int64_t)be64_to_cpu(*(uint64_t *)data));
+         break;
+ 
+-    case BLOBMSG_TYPE_DOUBLE: {
+-            union {
+-                double d;
+-                uint64_t u64;
+-            } v;
+-            v.u64 = be64_to_cpu(*(uint64_t *)data);
+-            lua_pushnumber(L, v.d);
+-        }
+-        break;
++    // case BLOBMSG_TYPE_DOUBLE: {
++    //         union {
++    //             double d;
++    //             uint64_t u64;
++    //         } v;
++    //         v.u64 = be64_to_cpu(*(uint64_t *)data);
++    //         lua_pushnumber(L, v.d);
++    //     }
++    //     break;
+ 
+     case BLOBMSG_TYPE_STRING:
+         lua_pushstring(L, data);
